@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
-import { appConfig } from "./appConfig"
+import { appConfig } from "../config/appConfig"
 
-export const dbConnection = async () => {
+export const mongoConnection = async () => {
   try {
-    console.log(appConfig.MongoDbUri);
     await mongoose.connect(appConfig.MongoDbUri);
+    console.log("Connected to db successfully")
   } catch (error: any) {
     console.error("MongoDB Connection Error:", error.message);
     // Retry connection after 5 seconds
-    setTimeout(dbConnection, 5000);
+    setTimeout(mongoConnection, 5000);
   }
 };
