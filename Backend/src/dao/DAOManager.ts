@@ -1,5 +1,5 @@
 import { appConfig } from "../config/appConfig";
-import { mongoConnection } from "../db/mongoConnection"; // your mongo connection util
+import { mongoConnection } from "../db/mongoConnection";
 import type { IUserDAO } from "./interfaces/IUserDAO";
 
 export class DAOManager {

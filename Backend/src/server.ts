@@ -7,10 +7,8 @@ const startServer = async () => {
   try {
     //Initialize DAOs + Services first
     await ServiceManager.init();
-
     // Now that services are ready, create routes
     app.use("/api", createUserRouter());
-
     app.listen(appConfig.Port, () => {
       console.log(`Server running on port ${appConfig.Port}`);
     });
