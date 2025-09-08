@@ -4,9 +4,23 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx}",
     "./src/pages/**/*.{js,ts,jsx,tsx}",
     "./src/components/**/*.{js,ts,jsx,tsx}",
+    "./src/features/**/*.{js,ts,jsx,tsx}",   // 👈 add features
+    "./src/shared/**/*.{js,ts,jsx,tsx}",     // 👈 add shared
+    "./src/context/**/*.{js,ts,jsx,tsx}", 
   ],
   theme: {
-    extend: {},
+    extend: {
+       colors: {
+      primary: "#6366F1",   // Indigo 500 (softer for dark mode)
+      secondary: "#EC4899", // Pink 500
+      background: "#111827", // Dark background (Gray 900)
+      light: "#1F2937",   // Slightly lighter (Gray 800)
+      text: {
+        primary: "#F9FAFB", // White-ish (Gray 50)
+        secondary: "#D1D5DB", // Gray 300
+      },
+    }
+    },
   },
   plugins: [],
 }
