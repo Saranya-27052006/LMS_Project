@@ -1,9 +1,17 @@
-import HomePage from "@/features/home/pages";
+import Footer from "@/components/homePage/Footer";
+import Hero from "@/components/homePage/HeroSection";
+import Testimonials from "@/components/homePage/Testimonials";
+import UniqueSection from "@/components/homePage/unquieSection";
+import VideoSection from "@/components/homePage/videoSection";
 
-export default function Home() {
+export default function HomePage() {
   return (
     <>
-      <HomePage />
+    <Hero />
+    <UniqueSection />
+    <Testimonials />
+    <VideoSection />
+    <Footer />
     </>
   );
 }

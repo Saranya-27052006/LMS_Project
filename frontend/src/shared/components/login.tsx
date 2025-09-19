@@ -3,9 +3,9 @@
 import { useContext, useState } from 'react';
 import { LoginContext } from '@/context/logincontext';
 import { GoogleLogin, GoogleOAuthProvider, CredentialResponse } from '@react-oauth/google';
-// import { useRouter } from 'next/router';
-import { UserContext, useUser } from '@/context/userContext';
+import { useUser } from '@/context/userContext';
 import { useError } from '@/context/errorContext';
+import { useRouter } from 'next/navigation';
 
 interface IUser {
     name: string;
@@ -13,8 +13,8 @@ interface IUser {
     password: string;
 }
 
-const Login = () => {
-    // const router = useRouter();
+const LoginPage = () => {
+    const router = useRouter();
     const context = useContext(LoginContext);
     if (!context) throw new Error("LoginContext is undefined...");
     const { login } = useUser();
@@ -39,9 +39,8 @@ const Login = () => {
             }
             const data = await response.json();
             setShowModal(false);
-            // router.push('/dashboard');
-            console.log("done")
             login(data.user);
+            router.push("/dashboard")
         } catch (error) {
             console.error('Error during authentication:', error);
             setError("Google authentication failed. Please try again.");
@@ -71,9 +70,9 @@ const Login = () => {
             }
             const data = await response.json();
             setShowModal(false);
-            // router.push('/dashboard');
-            console.log("done")
+            console.log(data)
             login(data.user);
+            router.push("/dashboard")
         } catch (error) {
             console.error('Auth error:', error);
             setError("Something went wrong. Please try again.");
@@ -169,4 +168,4 @@ const Login = () => {
     ) : null;
 };
 
-export default Login;
+export default LoginPage;

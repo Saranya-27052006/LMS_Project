@@ -2,9 +2,10 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { useUser } from '@/context/userContext';
-// import router from 'next/router';
+import { useRouter } from "next/navigation";
 
 const ProfileNavbar = () => {
+    const router = useRouter();
     const { logout, user } = useUser();
     const [isDropdownOpen, setDropdownOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement | null>(null);
@@ -22,7 +23,7 @@ const ProfileNavbar = () => {
 
     const handleLogout = () => {
         logout()
-        // router.push('/');
+        router.push('/');
     };
 
     return (
@@ -33,7 +34,7 @@ const ProfileNavbar = () => {
                     className="flex items-center gap-2 border-2 border-gray-700 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition"
                 >
                     <img
-                        src={user?.profile || "images/profile.png"}
+                        src={user?.profile || "/images/profile.png"}
                         alt="Profile"
                         className="w-8 h-8 rounded-full"
                     />
