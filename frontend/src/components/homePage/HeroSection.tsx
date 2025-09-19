@@ -48,7 +48,7 @@ export default function Hero() {
 
         {/* Right Side - Changing Image */}
         <motion.div
-          key={currentIndex} // Important for animation on change
+          key={currentIndex}
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
