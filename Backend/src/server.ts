@@ -1,20 +1,16 @@
-import { app } from "./app";
 import { appConfig } from "./config/appConfig";
-import { ServiceManager } from "./services/ServiceManager";
-import { createUserRouter } from "./routes/userRoutes";
-
-const startServer = async () => {
+import { setupApp } from "./app";
+export const startServer = async () => {
   try {
-    //Initialize DAOs + Services first
-    await ServiceManager.init();
-    // Now that services are ready, create routes
-    app.use("/api", createUserRouter());
+    const app = await setupApp(); // Setup services, routes, middleware
     app.listen(appConfig.Port, () => {
       console.log(`Server running on port ${appConfig.Port}`);
     });
   } catch (err) {
-    console.error("Error starting server:", err);
+    console.error("Failed to start server:", err);
     process.exit(1);
   }
 };
+
+// Start server
 startServer();

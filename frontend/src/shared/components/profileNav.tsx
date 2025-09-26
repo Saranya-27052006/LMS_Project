@@ -34,7 +34,7 @@ const ProfileNavbar = () => {
                     className="flex items-center gap-2 border-2 border-gray-700 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition"
                 >
                     <img
-                        src={user?.profile || "/images/profile.png"}
+                        src={user?.picture || "/images/profile.png"}
                         alt="Profile"
                         className="w-8 h-8 rounded-full"
                     />

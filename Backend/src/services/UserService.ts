@@ -1,8 +1,9 @@
 import type { IUser } from "../models/user";
 import type { IUserDAO } from "../dao/interfaces/IUserDAO";
-import bcrypt from "bcrypt"
+import bcrypt from "bcrypt";
 import AuthService from "./AuthService";
 import { verifyAuth } from "../utils/OuthVerify";
+import { AppError } from "../utils/AppError";
 
 export class UserService {
   private userDao: IUserDAO;
@@ -12,55 +13,62 @@ export class UserService {
   }
 
   async createUser(userData: IUser) {
-    const isExist = await this.userDao.findByEmail(userData.email)
+    const isExist = await this.userDao.findByEmail(userData.email);
     if (isExist) {
-      throw new Error("User is already exists")
+      throw new AppError("User already exists", 400);
     }
     if (!userData.password) {
-      throw new Error("Password required");
+      throw new AppError("Password is required", 400);
     }
     const hashed = await bcrypt.hash(userData.password, 10);
-    return await this.userDao.createUser({ ...userData, password: hashed });
+    const user = await this.userDao.createUser({ ...userData, password: hashed });
+    const token = AuthService.generateToken(user);
+    return { user, token };
   }
 
   async login(email: string, password: string) {
-    const user = await this.userDao.findByEmail(email)
+    const user = await this.userDao.findByEmail(email);
     if (!user) {
-      throw new Error("User not exists")
+      throw new AppError("User does not exist", 404);
     }
     if (!password || !user.password) {
-      throw new Error("Password is missing");
+      throw new AppError("Password is missing", 400);
     }
     const comparePassword = await bcrypt.compare(password, user.password);
     if (!comparePassword) {
-      throw new Error("Invalid password");
+      throw new AppError("Invalid password", 401);
     }
-    return AuthService.generateToken(user);
+    const token = AuthService.generateToken(user);
+    return { token, user };
   }
 
   async googleLogin(idToken: string) {
-
     const payload = await verifyAuth(idToken);
     if (!payload) {
-      throw new Error("GoogleId verification failed");
+      throw new AppError("Google ID verification failed", 400);
     }
     const { sub: googleId, email, name, picture } = payload;
     if (!email) {
-      throw new Error("Email is required from Google payload");
+      throw new AppError("Email is required from Google payload", 400);
     }
-    let user = await this.userDao.findByGoogleId(googleId);
+
+    let user = await this.userDao.findByEmail(email);
     if (!user) {
       user = await this.userDao.createUser({
         googleId,
         email,
         name: name || "Google User",
-        picture: picture || "",
-
+        picture: picture?.replace(/"$/, "") || "",
         notification: [],
-        role: ""
       });
+    } else {
+      user = await this.userDao.updateGoogleFields(
+        email,
+        googleId,
+        picture?.replace(/"$/, "")
+      );
     }
-    const token = await AuthService.generateToken(user);
+    const token = AuthService.generateToken(user);
     return { token, user };
   }
 
@@ -69,29 +77,42 @@ export class UserService {
   }
 
   async getUserById(userId: string) {
-    return await this.userDao.findById(userId)
+    const user = await this.userDao.findById(userId);
+    if (!user) {
+      throw new AppError("User not found", 404);
+    }
+    return user;
   }
 
   async changeUserRole(userId: string, role: string) {
-    let updateData: any = { role: role };
+    const validRoles = ["student", "teacher", "admin", "company"];
+    if (!validRoles.includes(role)) {
+      throw new AppError("Invalid role", 400);
+    }
+
+    let updateData: any = { role };
     let unsetData: any = {};
 
-    if (role === "student") {
-      updateData.enrolledCourses = [];
-      unsetData = { batches: 1, courses: 1, jobPosts: 1 };
-    } else if (role === "teacher") {
-      updateData.batches = [];
-      unsetData = { enrolledCourses: 1, jobPosts: 1, courses: 1 };
-    } else if (role === "admin") {
-      updateData.courses = [];
-      unsetData = { enrolledCourses: 1, batches: 1, jobPosts: 1 };
-    } else if (role === "company") {
-      updateData.jobPosts = [];
-      unsetData = { enrolledCourses: 1, batches: 1, courses: 1 };
-    } else {
-      throw new Error("Invalid role");
+    switch (role) {
+      case "student":
+        updateData.enrolledCourses = [];
+        unsetData = { batches: 1, courses: 1, jobPosts: 1 };
+        break;
+      case "teacher":
+        updateData.batches = [];
+        unsetData = { enrolledCourses: 1, jobPosts: 1, courses: 1 };
+        break;
+      case "admin":
+        updateData.courses = [];
+        unsetData = { enrolledCourses: 1, batches: 1, jobPosts: 1 };
+        break;
+      case "company":
+        updateData.jobPosts = [];
+        unsetData = { enrolledCourses: 1, batches: 1, courses: 1 };
+        break;
     }
-    let updateField: any = { $set: updateData, $unset: unsetData }
-    return await this.userDao.updateRole(userId, updateField)
+
+    const updateField = { $set: updateData, $unset: unsetData };
+    return await this.userDao.updateRole(userId, updateField);
   }
 }

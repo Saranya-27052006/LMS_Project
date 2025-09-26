@@ -1,10 +1,24 @@
-import express, { type NextFunction, type Request, type Response } from "express";
+import express, { type Request, type Response, type NextFunction } from "express";
+import cors from "cors";
+import { ServiceManager } from "./services/ServiceManager";
+import { createUserRouter } from "./routes/userRoutes";
 
-export const app = express();
+const app = express();
 app.use(express.json());
-app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-  res.status(err.statusCode || 500).json({
-    success: false,
-    message: err.message || "Something went wrong",
+app.use(cors());
+
+export const setupApp = async () => {
+  await ServiceManager.init();
+  console.log("Services initialized successfully");
+  app.use("/api", createUserRouter());
+
+  // Error-handling middleware
+  app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+    console.error("Error middleware caught an error:", err);
+    res.status(err.statusCode || 500).json({
+      success: false,
+      message: err.message || "Something went wrong",
+    });
   });
-});
+  return app; 
+};
