@@ -27,4 +27,11 @@ export default class UserDAOMongo implements IUserDAO {
   async findByGoogleId(googleId: string): Promise<IUser | null> {
     return await UserModel.findOne({ googleId: googleId })
   }
+  async updateGoogleFields(email: string, googleId: string, picture?: string): Promise<IUser | null> {
+    return await UserModel.findOneAndUpdate(
+      { email },
+      { googleId, picture: picture || undefined },
+      { new: true }
+    );
+  }
 }

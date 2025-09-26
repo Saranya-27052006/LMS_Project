@@ -1,6 +1,7 @@
 import type { IUser } from "../../models/user";
 
 export interface IUserDAO {
+  updateGoogleFields(email: string, googleId: string, arg2: string | undefined): IUser | PromiseLike<IUser | null> | null;
   createUser(user: IUser): Promise<IUser>;
   findAll(): Promise<IUser[]>;
   findById(userId:string):Promise<IUser | null>;
