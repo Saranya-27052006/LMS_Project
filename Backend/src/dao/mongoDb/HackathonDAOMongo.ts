@@ -17,7 +17,7 @@ export default class HackathonDAO implements IHackathonDAO {
   }
 
   async getAllHackathon(): Promise<IHackathon[]> {
-    return await Hackathon.find();
+    return await Hackathon.find()
   }
 
   async updateHackathon(id: string, data: Partial<IHackathon>): Promise<IHackathon | null> {

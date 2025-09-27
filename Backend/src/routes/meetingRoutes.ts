@@ -1,11 +1,11 @@
 import { Router } from "express";
 import { MeetingController } from "../controllers/MeetingController";
 import { authenticate, isAdmin } from "../middleware/AuthMiddleware";
-import { ServiceManager } from "../services/ServiceManager"; // 👈 add this
+import { ServiceManager } from "../services/ServiceManager";
 
 export function createMeetingRouter() {
   const router = Router();
-  const meetingController = new MeetingController(ServiceManager.meetingService); // 👈 pass service
+  const meetingController = new MeetingController(ServiceManager.meetingService); 
 
   
   router.post("/meetings",  meetingController.createMeeting);

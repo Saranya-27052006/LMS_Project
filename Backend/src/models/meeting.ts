@@ -25,4 +25,4 @@ const MeetingSchema = new Schema<IMeeting>(
     
 )
 
-export default model<IMeeting>("Meeting",MeetingSchema)
+export default model<IMeeting>("Meeting",MeetingSchema);

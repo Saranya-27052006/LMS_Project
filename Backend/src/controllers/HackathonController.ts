@@ -42,7 +42,11 @@ export class HackathonController {
     } catch (err) {
       next(err);
     }
-  };
+  }
+
+
+
+
 
   updateHackathon = async (req: Request, res: Response, next: NextFunction) => {
     try {

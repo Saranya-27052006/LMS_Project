@@ -43,7 +43,7 @@ export class MeetingController {
 
  getMeetings = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    // Fetch all meetings directly from DAO
+
     const meetings = await this.meetingService.getAllMeetings();
     res.status(200).json(meetings);
   } catch (err) {

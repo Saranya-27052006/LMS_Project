@@ -12,7 +12,7 @@ export function createHackathonRouter() {
   router.get("/hackathons/:id", hackathonController.getHackathonById);
   router.get("/hackathons/batch/:batchId", hackathonController.getHackathonByBatch);
   router.put("/hackathons/:id",   hackathonController.updateHackathon);
-  router.delete("/hackathons/:id", hackathonController.deleteHackathon);
+  router.delete("/hackathons/:id", hackathonController.deleteHackathon)
 
-  return router;
+  return router
 }

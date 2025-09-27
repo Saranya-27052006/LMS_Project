@@ -2,7 +2,7 @@ import type { IMeetingDAO } from "../dao/interfaces/IMeetingDAO"
 
 import type { IMeeting } from "../models/meeting"
 import User from "../models/user"
-import Batch from "../models/batch"
+
 
 export  class MeetingService{
     private meetingDAO:IMeetingDAO

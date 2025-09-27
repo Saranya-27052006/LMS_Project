@@ -20,7 +20,7 @@ export class ServiceManager {
      ServiceManager.reportService = new ReportService(DAOManager.reportDao);
     ServiceManager.meetingService = new MeetingService(DAOManager.meetingDao);
    
-    ServiceManager.hackathonService = new HackathonService(DAOManager.hackathonDao)
+    ServiceManager.hackathonService = new HackathonService(DAOManager.hackathonDao);
 
   }
 }

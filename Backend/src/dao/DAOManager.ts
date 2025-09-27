@@ -21,7 +21,7 @@ export class DAOManager {
       DAOManager.meetingDao = new MeetingDAOMongo()
       const { default: ReportDAOMongo } = await import("./mongoDb/ReportDAOMongo");
       DAOManager.reportDao = new ReportDAOMongo()
-      const { default: HackathonDAOMongo } = await import("./mongoDb/HackathonDAOMongo");
+      const { default: HackathonDAOMongo } = await import("./mongoDb/HackathonDAOMongo")
       DAOManager.hackathonDao = new HackathonDAOMongo()
 
     }
