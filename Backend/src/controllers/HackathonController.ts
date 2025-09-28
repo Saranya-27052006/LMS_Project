@@ -64,5 +64,5 @@ export class HackathonController {
     } catch (err) {
       next(err);
     }
-  };
+  }
 }

@@ -110,5 +110,5 @@ export class ReportController {
     } catch (err) {
       next(err);
     }
-  };
+  }
 }

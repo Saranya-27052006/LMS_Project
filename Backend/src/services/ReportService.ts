@@ -54,7 +54,7 @@ export  class ReportService {
       return this.reportDAO.getStudentReport(user.id as any);
     }
 
-    throw new Error("Unauthorized role")
+    throw new Error("Unauthorized role");
   }
 
   async deleteReport(user: IToken, reportId: Types.ObjectId): Promise<boolean> {
@@ -68,7 +68,7 @@ export  class ReportService {
   //   throw new Error("Teachers can only delete reports from their batches");
   // }
 
-  return this.reportDAO.deleteReport(user, reportId); 
+  return this.reportDAO.deleteReport(user, reportId)
 }
 
 }

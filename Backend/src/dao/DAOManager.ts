@@ -8,7 +8,7 @@ import type { IUserDAO } from "./interfaces/IUserDAO";
 export class DAOManager {
   static userDao: IUserDAO;
   static meetingDao:IMeetingDAO;
-  static hackathonDao:IHackathonDAO
+  static hackathonDao:IHackathonDAO;
   static reportDao:IReportDAO;
   
 

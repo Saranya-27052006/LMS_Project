@@ -13,5 +13,5 @@ export function createMeetingRouter() {
   router.delete("/meetings/del/:id",   meetingController.deleteMeeting);
   router.get("/meetings/get", meetingController.getMeetings)
 
-  return router;
+  return router
 }

@@ -10,7 +10,7 @@ export class ServiceManager {
   static userService: UserService;
   static reportService: ReportService;
   static meetingService: MeetingService;
-  static hackathonService: HackathonService
+  static hackathonService: HackathonService;
  
   
 
@@ -20,7 +20,7 @@ export class ServiceManager {
      ServiceManager.reportService = new ReportService(DAOManager.reportDao);
     ServiceManager.meetingService = new MeetingService(DAOManager.meetingDao);
    
-    ServiceManager.hackathonService = new HackathonService(DAOManager.hackathonDao)
+    ServiceManager.hackathonService = new HackathonService(DAOManager.hackathonDao);
 
   }
 }

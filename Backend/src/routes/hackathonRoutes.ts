@@ -14,5 +14,5 @@ export function createHackathonRouter() {
   router.put("/hackathons/:id",   hackathonController.updateHackathon);
   router.delete("/hackathons/:id", hackathonController.deleteHackathon)
 
-  return router;
+  return router
 }

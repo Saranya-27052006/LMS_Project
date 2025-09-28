@@ -31,7 +31,7 @@ export  class MeetingService{
     }
 
     async getAllMeetings(): Promise<IMeeting[]> {
-    return this.meetingDAO.findAllMeetings();
+    return this.meetingDAO.findAllMeetings()
 }
 
 
