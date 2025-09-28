@@ -59,7 +59,7 @@ export  class ReportService {
 
   async deleteReport(user: IToken, reportId: Types.ObjectId): Promise<boolean> {
   if (user.role !== "teacher" && user.role !== "admin") {
-    throw new Error("Only teachers or admins can delete reports")
+    throw new Error("Only teachers or admins can delete reports");
   }
 
   

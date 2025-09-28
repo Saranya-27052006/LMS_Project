@@ -23,7 +23,7 @@ export interface IReportDAO {
 
   getBatchReports(user: IToken,batchId:Types.ObjectId): Promise<IReport[]>;
 
-  getStudentReport(user: IToken): Promise<IReport | null>
+  getStudentReport(user: IToken): Promise<IReport | null>;
 
   getSpecificStudentReport(
     user: IToken,

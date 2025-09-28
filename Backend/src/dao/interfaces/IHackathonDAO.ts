@@ -6,5 +6,5 @@ export interface IHackathonDAO {
   getHackathonByBatch(batchId: string): Promise<IHackathon[]>;
   getAllHackathon(): Promise<IHackathon[]>;
   updateHackathon(id: string, data: Partial<IHackathon>): Promise<IHackathon | null>;
-  deleteHackathon(id: string): Promise<IHackathon | null>
+  deleteHackathon(id: string): Promise<IHackathon | null>;
 }

@@ -10,7 +10,7 @@ export class ServiceManager {
   static userService: UserService;
   static reportService: ReportService;
   static meetingService: MeetingService;
-  static hackathonService: HackathonService;
+  static hackathonService: HackathonService
  
   
 

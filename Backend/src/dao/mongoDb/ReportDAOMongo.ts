@@ -37,7 +37,7 @@ export default class ReportDAO implements IReportDAO {
   }
 
   async getStudentReport(user: IToken): Promise<IReport | null> {
-    return Report.findOne({ "students.studentId": user.id }).populate("students.studentId");
+    return Report.findOne({ "students.studentId": user.id }).populate("students.studentId")
   }
 
   async getSpecificStudentReport(user: IToken, studentId: Types.ObjectId): Promise<IReport | null> {

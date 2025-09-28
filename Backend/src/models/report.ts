@@ -35,4 +35,4 @@ const reportSchema = new Schema({
     ],
     createdAt:{type:Date,default:Date.now}
 })
-export default model<IReport>("Report",reportSchema);
+export default model<IReport>("Report",reportSchema)

@@ -108,7 +108,7 @@ export class ReportController {
 
       res.status(200).json({ message: "Report deleted successfully" });
     } catch (err) {
-      next(err)
+      next(err);
     }
   }
 }

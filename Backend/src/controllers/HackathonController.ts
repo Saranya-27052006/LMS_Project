@@ -62,7 +62,7 @@ export class HackathonController {
       const hackathon = await this.hackathonService.deleteHackathon(req.params.id);
       res.json(hackathon);
     } catch (err) {
-      next(err)
+      next(err);
     }
   }
 }

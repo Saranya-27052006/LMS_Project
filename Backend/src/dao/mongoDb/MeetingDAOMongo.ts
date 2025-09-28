@@ -4,7 +4,7 @@ import type { IMeeting } from "../../models/meeting"
 
 export default class meetingDAOMongo implements IMeetingDAO{
     async findAllMeetings(): Promise<IMeeting[]> {
-        return Meeting.find({});
+        return Meeting.find({})
 
     }
 

@@ -25,6 +25,6 @@ export default class HackathonDAO implements IHackathonDAO {
   }
 
   async deleteHackathon(id: string): Promise<IHackathon | null> {
-    return await Hackathon.findByIdAndDelete(id);
+    return await Hackathon.findByIdAndDelete(id)
   }
 }
