@@ -27,7 +27,7 @@ export  class MeetingService{
         if(!deletedMeeting){
             throw new Error("Meeting not found")
         }
-        return deletedMeeting
+        return deletedMeeting;
     }
 
     async getAllMeetings(): Promise<IMeeting[]> {

@@ -27,7 +27,7 @@ export class ReportController {
       );
       res.status(201).json(report);
     } catch (err) {
-      next(err);
+      next(err)
     }
   };
 

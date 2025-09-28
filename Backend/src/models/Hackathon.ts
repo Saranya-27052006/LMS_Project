@@ -50,4 +50,4 @@ const HackathonSchema = new Schema<IHackathon>(
   }
 );
 
-export default model<IHackathon>("Hackathon", HackathonSchema)
+export default model<IHackathon>("Hackathon", HackathonSchema);

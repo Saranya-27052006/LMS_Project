@@ -29,6 +29,6 @@ export class HackathonService {
   }
 
   async deleteHackathon(id: string) {
-    return await this.hackathonDAO.deleteHackathon(id)
+    return await this.hackathonDAO.deleteHackathon(id);
   }
 }

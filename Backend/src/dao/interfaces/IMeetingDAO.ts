@@ -9,4 +9,4 @@ export interface IMeetingDAO {
     updateMeetingById(id:string,updateData:Partial<IMeeting>):Promise<IMeeting | null>
     createMeeting(meetingData:Partial<IMeeting>):Promise<IMeeting>
     deleteMeeting(id:string):Promise<IMeeting | null>
-}
+};

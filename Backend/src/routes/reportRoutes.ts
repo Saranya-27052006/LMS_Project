@@ -8,7 +8,7 @@ export function createReportRouter() {
   const reportController = new ReportController(ServiceManager.reportService);
 
   router.post("/reports",  reportController.createReport);
-  router.put("/reports/:reportId/:studentSubId", reportController.updateReport);
+  router.put("/reports/:reportId/:studentSubId", reportController.updateReport)
   router.get("/reports", reportController.getReports);
   router.delete("/reports/:reportId",  reportController.deleteReport);
 

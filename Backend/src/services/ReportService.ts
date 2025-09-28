@@ -54,7 +54,7 @@ export  class ReportService {
       return this.reportDAO.getStudentReport(user.id as any);
     }
 
-    throw new Error("Unauthorized role");
+    throw new Error("Unauthorized role")
   }
 
   async deleteReport(user: IToken, reportId: Types.ObjectId): Promise<boolean> {

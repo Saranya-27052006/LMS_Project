@@ -11,7 +11,7 @@ export function createMeetingRouter() {
   router.post("/meetings",  meetingController.createMeeting);
   router.put("/meetings/update/:id",   meetingController.updateMeeting);
   router.delete("/meetings/del/:id",   meetingController.deleteMeeting);
-  router.get("/meetings/get", meetingController.getMeetings);
+  router.get("/meetings/get", meetingController.getMeetings)
 
   return router;
 }

@@ -22,7 +22,7 @@ export default class meetingDAOMongo implements IMeetingDAO{
     }
 
     async createMeeting(meetingData: Partial<IMeeting>): Promise<IMeeting> {
-        return Meeting.create(meetingData)
+        return Meeting.create(meetingData);
     }
 
     async deleteMeeting(id: string): Promise<IMeeting | null> {

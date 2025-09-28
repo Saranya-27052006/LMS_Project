@@ -22,7 +22,7 @@ export class DAOManager {
       const { default: ReportDAOMongo } = await import("./mongoDb/ReportDAOMongo");
       DAOManager.reportDao = new ReportDAOMongo()
       const { default: HackathonDAOMongo } = await import("./mongoDb/HackathonDAOMongo")
-      DAOManager.hackathonDao = new HackathonDAOMongo()
+      DAOManager.hackathonDao = new HackathonDAOMongo();
 
     }
   }

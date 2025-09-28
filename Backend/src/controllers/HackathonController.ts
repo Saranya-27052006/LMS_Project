@@ -26,7 +26,7 @@ export class HackathonController {
     }
   };
 
-  getHackathonByBatch = async (req: Request, res: Response, next: NextFunction) => {
+  getHackathonByBatch = async (req: Request, res: Response,  next: NextFunction) => {
     try {
       const hackathon = await this.hackathonService.getHackathonByBatch(req.params.batchId);
       res.json(hackathon);

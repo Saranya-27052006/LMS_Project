@@ -22,7 +22,7 @@ export class MeetingController {
     try {
       const { id } = req.params;
       const updatedMeeting = await this.meetingService.updateMeeting(id, req.body);
-      res.status(200).json(updatedMeeting);
+      res.status(200).json(updatedMeeting)
     } catch (err) {
       next(err);
     }
