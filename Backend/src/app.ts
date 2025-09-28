@@ -28,5 +28,5 @@ export const setupApp = async () => {
     });
   });
 
-  return app
+  return app;
 };
