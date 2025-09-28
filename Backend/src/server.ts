@@ -1,5 +1,5 @@
 import { setupApp } from "./app";
-import { appConfig } from "./Config/appConfig";
+import { appConfig } from "./config/appConfig";
 
 
 
