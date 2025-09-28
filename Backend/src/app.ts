@@ -13,10 +13,11 @@ app.use(cors());
 export const setupApp = async () => {
   await ServiceManager.init();
   console.log("Services initialized successfully");
+
   app.use("/api", createUserRouter());
-   app.use("/meeting",createMeetingRouter());
-   app.use("/hackathon",createHackathonRouter());
-   app.use("/report",createReportRouter())
+  app.use("/meeting", createMeetingRouter());
+  app.use("/hackathon", createHackathonRouter());
+  app.use("/report", createReportRouter());
 
   // Error-handling middleware
   app.use((err: any, req: Request, res: Response, next: NextFunction) => {
@@ -26,5 +27,6 @@ export const setupApp = async () => {
       message: err.message || "Something went wrong",
     });
   });
-  return app; 
+
+  return app;
 };
