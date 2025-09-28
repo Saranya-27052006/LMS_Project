@@ -6,7 +6,7 @@ import { createMeetingRouter } from "./routes/meetingRoutes";
 import { createHackathonRouter } from "./routes/hackathonRoutes";
 import { createReportRouter } from "./routes/reportRoutes";
 
-const app = express();
+const app = express()
 app.use(express.json());
 app.use(cors());
 
