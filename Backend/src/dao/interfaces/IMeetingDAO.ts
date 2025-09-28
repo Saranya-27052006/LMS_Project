@@ -7,6 +7,6 @@ export interface IMeetingDAO {
     findMeetingsByTeacherIdsOrAdmins(teacherId:string,adminIds:string[]):Promise<IMeeting[]>;
     findMeetingsByBatchIds(batchIds:string[]):Promise<IMeeting[]>
     updateMeetingById(id:string,updateData:Partial<IMeeting>):Promise<IMeeting | null>
-    createMeeting(meetingData:Partial<IMeeting>):Promise<IMeeting>
+    createMeeting(meetingData:Partial<IMeeting>):Promise<IMeeting>;
     deleteMeeting(id:string):Promise<IMeeting | null>;
 };

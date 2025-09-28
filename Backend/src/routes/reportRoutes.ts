@@ -12,5 +12,5 @@ export function createReportRouter() {
   router.get("/reports", reportController.getReports);
   router.delete("/reports/:reportId",  reportController.deleteReport);
 
-  return router
+  return router;
 }

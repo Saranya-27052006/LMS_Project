@@ -47,7 +47,7 @@ export class MeetingController {
     const meetings = await this.meetingService.getAllMeetings();
     res.status(200).json(meetings);
   } catch (err) {
-    next(err)
+    next(err);
   }
 };
 

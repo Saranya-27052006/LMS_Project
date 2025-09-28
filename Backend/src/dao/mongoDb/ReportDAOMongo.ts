@@ -46,6 +46,6 @@ export default class ReportDAO implements IReportDAO {
 
   async deleteReport(user: IToken, reportId: Types.ObjectId): Promise<boolean> {
     const result = await Report.findByIdAndDelete(reportId)
-    return !!result
+    return !!result;
   }
 }

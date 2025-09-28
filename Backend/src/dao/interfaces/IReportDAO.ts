@@ -30,5 +30,5 @@ export interface IReportDAO {
     studentId: Types.ObjectId
   ): Promise<IReport | null>;
 
-  deleteReport(user: IToken, reportId: Types.ObjectId): Promise<boolean>
+  deleteReport(user: IToken, reportId: Types.ObjectId): Promise<boolean>;
 }
