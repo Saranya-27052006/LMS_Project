@@ -7,7 +7,7 @@ export interface IMeeting extends Document{
     description:string;
     meetingLink:string;
     date:string;
-    time:string;
+    time:string
 }
 
 const MeetingSchema = new Schema<IMeeting>(

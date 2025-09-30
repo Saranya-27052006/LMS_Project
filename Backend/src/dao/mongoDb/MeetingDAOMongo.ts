@@ -17,7 +17,7 @@ export default class meetingDAOMongo implements IMeetingDAO{
         return Meeting.find({batchId:{$in:batchIds}})   
     }
     async updateMeetingById(id: string, updateData: Partial<IMeeting>): Promise<IMeeting | null> {
-        return Meeting.findByIdAndUpdate(id,updateData,{new:true})
+        return Meeting.findByIdAndUpdate(id,updateData,{new:true});
         
     }
 

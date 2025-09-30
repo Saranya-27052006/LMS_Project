@@ -1,54 +1,85 @@
 import type { Request, Response, NextFunction } from "express";
-import type { AuthenticatedRequest } from "../types/token";
-import {MeetingService} from "../services/MeetingService";
+import { MeetingService } from "../services/MeetingService";
 
 export class MeetingController {
-  private meetingService: MeetingService;
+    private meetingService: MeetingService;
 
-  constructor(meetingService: MeetingService) {
-    this.meetingService = meetingService;
-  }
-
-  createMeeting = async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const meeting = await this.meetingService.createMeeting(req.body);
-      res.status(201).json(meeting);
-    } catch (err) {
-      next(err);
+    constructor(meetingService: MeetingService) {
+        this.meetingService = meetingService;
     }
-  };
 
-  updateMeeting = async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const { id } = req.params;
-      const updatedMeeting = await this.meetingService.updateMeeting(id, req.body);
-      res.status(200).json(updatedMeeting)
-    } catch (err) {
-      next(err);
-    }
-  };
+    createMeeting = async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const user = req.user;
+            if (!user || !user.id || !user.role) {
+                return res.status(401).json({ message: "Unauthorized" });
+            }
 
-  deleteMeeting = async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const{ id } = req.params;
-      if(!id){
-        return res.status(400).json({message:"meetingId is required"})
-      }
-      const deletedMeeting = await this.meetingService.deleteMeeting(id);
-      res.status(200).json(deletedMeeting);
-    } catch (err) {
-      next(err);
-    }
-  };
+            const meeting = await this.meetingService.createMeeting(
+                { id: user.id, role: user.role },
+                req.body
+            );
+            res.status(201).json(meeting);
+        } catch (err) {
+            next(err);
+        }
+    };
 
- getMeetings = async (req: Request, res: Response, next: NextFunction) => {
-  try {
+    updateMeeting = async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const user = req.user;
+            if (!user || !user.id || !user.role) {
+                return res.status(401).json({ message: "Unauthorized" });
+            }
 
-    const meetings = await this.meetingService.getAllMeetings();
-    res.status(200).json(meetings);
-  } catch (err) {
-    next(err)
-  }
-};
+            const { id } = req.params;
+            const updatedMeeting = await this.meetingService.updateMeeting(
+                { id: user.id, role: user.role },
+                id,
+                req.body
+            );
+            res.status(200).json(updatedMeeting);
+        } catch (err) {
+            next(err);
+        }
+    };
 
+    deleteMeeting = async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const user = req.user;
+            if (!user || !user.id || !user.role) {
+                return res.status(401).json({ message: "Unauthorized" });
+            }
+
+            const { id } = req.params;
+            if (!id) {
+                return res.status(400).json({ message: "meetingId is required" });
+            }
+
+            const deletedMeeting = await this.meetingService.deleteMeeting(
+                { id: user.id, role: user.role },
+                id
+            );
+            res.status(200).json(deletedMeeting);
+        } catch (err) {
+            next(err);
+        }
+    };
+
+    getMeetings = async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const user = req.user;
+            if (!user || !user.id || !user.role) {
+                return res.status(401).json({ message: "Unauthorized" });
+            }
+
+            const meetings = await this.meetingService.getMeetingsByUserRole({
+                id: user.id,
+                role: user.role,
+            });
+            res.status(200).json(meetings);
+        } catch (err) {
+            next(err);
+        }
+    };
 }

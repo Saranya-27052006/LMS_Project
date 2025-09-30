@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { MeetingController } from "../controllers/MeetingController";
-import { authenticate, isAdmin } from "../middleware/AuthMiddleware";
+import { authenticate} from "../middleware/AuthMiddleware";
 import { ServiceManager } from "../services/ServiceManager";
 
 export function createMeetingRouter() {
@@ -8,10 +8,10 @@ export function createMeetingRouter() {
   const meetingController = new MeetingController(ServiceManager.meetingService); 
 
   
-  router.post("/meetings",  meetingController.createMeeting);
-  router.put("/meetings/update/:id",   meetingController.updateMeeting);
-  router.delete("/meetings/del/:id",   meetingController.deleteMeeting);
-  router.get("/meetings/get", meetingController.getMeetings);
+  router.post("/meetings",authenticate,  meetingController.createMeeting);
+  router.put("/meetings/update/:id",authenticate,   meetingController.updateMeeting);
+  router.delete("/meetings/del/:id",authenticate,   meetingController.deleteMeeting);
+  router.get("/meetings/get",authenticate, meetingController.getMeetings);
 
   return router;
 }
