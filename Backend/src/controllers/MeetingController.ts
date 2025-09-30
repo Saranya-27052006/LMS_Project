@@ -19,7 +19,7 @@ export class MeetingController {
                 { id: user.id, role: user.role },
                 req.body
             );
-            res.status(201).json(meeting);
+            res.status(201).json(meeting)
         } catch (err) {
             next(err);
         }

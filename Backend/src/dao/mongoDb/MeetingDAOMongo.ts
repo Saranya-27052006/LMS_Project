@@ -26,6 +26,6 @@ export default class meetingDAOMongo implements IMeetingDAO{
     }
 
     async deleteMeeting(id: string): Promise<IMeeting | null> {
-        return Meeting.findByIdAndDelete(id);
+        return Meeting.findByIdAndDelete(id)
     }
 }

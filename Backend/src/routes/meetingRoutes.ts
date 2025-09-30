@@ -5,7 +5,7 @@ import { ServiceManager } from "../services/ServiceManager";
 
 export function createMeetingRouter() {
   const router = Router();
-  const meetingController = new MeetingController(ServiceManager.meetingService); 
+  const meetingController = new MeetingController(ServiceManager.meetingService)
 
   
   router.post("/meetings",authenticate,  meetingController.createMeeting);

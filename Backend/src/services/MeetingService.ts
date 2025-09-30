@@ -6,7 +6,7 @@ import type { IMeeting } from "../models/meeting";
 import mongoose from "mongoose";
 
 export class MeetingService {
-    private meetingDAO: IMeetingDAO;
+    private meetingDAO: IMeetingDAO
 
     constructor(meetingDAO: IMeetingDAO) {
         this.meetingDAO = meetingDAO;
