@@ -3,6 +3,7 @@ import cors from "cors";
 import { ServiceManager } from "./services/ServiceManager";
 import { createUserRouter } from "./routes/userRoutes";
 import { createMeetingRouter } from "./routes/meetingRoutes";
+import { createHackathonRouter } from "./routes/hackathonRoutes";
 
 const app = express();
 app.use(express.json());
@@ -13,6 +14,7 @@ export const setupApp = async () => {
   console.log("Services initialized successfully");
   app.use("/api", createUserRouter());
   app.use("/meeting",createMeetingRouter());
+  app.use("/hackathon",createHackathonRouter())
   
 
   

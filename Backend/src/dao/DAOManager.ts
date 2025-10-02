@@ -2,10 +2,12 @@ import { appConfig } from "../Config/appConfig";
 import { mongoConnection } from "../db/mongoConnection";
 import type { IUserDAO } from "./interfaces/IUserDAO";
 import type { IMeetingDAO } from "./interfaces/IMeetingDAO";
+import type { IHackathonDAO } from "./interfaces/IHackathonDAO";
 
 export class DAOManager {
   static userDao: IUserDAO;
   static meetingDao:IMeetingDAO;
+  static hackathonDao:IHackathonDAO;
   
 
   static async init() {
@@ -15,6 +17,9 @@ export class DAOManager {
       DAOManager.userDao = new UserDAOMongo();
       const { default: MeetingDAOMongo } = await import("./mongoDb/MeetingDAOMongo");
       DAOManager.meetingDao = new MeetingDAOMongo()
+      const { default: HackathonDAOMongo } = await import("./mongoDb/HackathonDAOMongo")
+      DAOManager.hackathonDao = new HackathonDAOMongo();
+
 
     }
   }
