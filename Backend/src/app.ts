@@ -2,6 +2,7 @@ import express, { type Request, type Response, type NextFunction } from "express
 import cors from "cors";
 import { ServiceManager } from "./services/ServiceManager";
 import { createUserRouter } from "./routes/userRoutes";
+import { createMeetingRouter } from "./routes/meetingRoutes";
 
 const app = express();
 app.use(express.json());
@@ -11,6 +12,10 @@ export const setupApp = async () => {
   await ServiceManager.init();
   console.log("Services initialized successfully");
   app.use("/api", createUserRouter());
+  app.use("/meeting",createMeetingRouter());
+  
+
+  
 
   // Error-handling middleware
   app.use((err: any, req: Request, res: Response, next: NextFunction) => {
